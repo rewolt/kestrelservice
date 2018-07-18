@@ -1,0 +1,86 @@
+﻿body {
+    width: 60em;
+    margin: 0 auto;
+    background-color: #efffd9;
+    font-family: Tahoma, Verdana, Arial, sans-serif;
+    text-align: center;
+}
+
+.header {
+    color: gold;
+    text-shadow: 5px 5px 10px #000000;
+    font-size: 5em;
+}
+
+.message {
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #4CAF50;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    border-left: 5px solid darkgreen;
+}
+
+.time {
+    margin-top: 5em;
+    font-size: 2em;
+}
+
+.footer {
+    background-color: #5555ff;
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    left: 0px;
+    color: #ffffff;
+}
+
+.container {
+    margin-top: 2em;
+}
+
+.button {
+    display: inline-block;
+    border-radius: 6px;
+    background-color: #f4511e;
+    border: solid;
+    border-color: #d43100;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 3px;
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button:hover {
+    border: inset;
+}
+
+.button:hover span {
+    padding-right: 25px;
+}
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}

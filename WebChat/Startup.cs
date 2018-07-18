@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using WebChat.Controllers;
 using WebChat.Services;
 
 namespace WebChat
@@ -17,6 +19,7 @@ namespace WebChat
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
 
@@ -28,39 +31,22 @@ namespace WebChat
                 app.UseDeveloperExceptionPage();
             }
 
-            var wsOptions = new WebSocketOptions()
-            {
-                KeepAliveInterval = TimeSpan.FromSeconds(120),
-                ReceiveBufferSize = 4 * 1024
-            };
+            app.UseForwardedHeaders(ConfigObjectFactory.MakeForwardedHeadersOptions());
+            app.UseWebSockets(ConfigObjectFactory.MakeWebSocketOptions());
+            app.UseFileServer();
+            app.UseMvc();
 
-            app.UseWebSockets(wsOptions);
             app.Use(async (context, next) =>
             {
-                if (context.Request.Path == "/ws")
+                if (context.Request.Path == "/webchat/ws")
                 {
-                    if (context.WebSockets.IsWebSocketRequest)
-                    {
-                        WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync();
-                        await SocketService.Echo(context, webSocket);
-                    }
-                    else
-                    {
-                        context.Response.StatusCode = 400;
-                    }
+                    await SocketService.HandleRequest(context);
                 }
                 else
                 {
                     await next();
                 }
             });
-
-            app.UseFileServer();
-
-            //app.Run(async (context) =>
-            //{
-            //    await context.Response.WriteAsync("Hello World!");
-            //});
         }
     }
 }

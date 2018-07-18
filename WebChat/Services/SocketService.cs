@@ -10,6 +10,19 @@ namespace WebChat.Services
 {
     public static class SocketService
     {
+        public static async Task HandleRequest(HttpContext context)
+        {
+            if (context.WebSockets.IsWebSocketRequest)
+            {
+                WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync();
+                await SocketService.Echo(context, webSocket);
+            }
+            else
+            {
+                context.Response.StatusCode = 400;
+            }
+        }
+
         public static async Task Echo(HttpContext context, WebSocket webSocket)
         {
             var buffer = new byte[1024 * 4];
