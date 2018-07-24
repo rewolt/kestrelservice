@@ -9,7 +9,7 @@ function setTime() {
 
 var xhttp = new XMLHttpRequest();
 var scheme = document.location.protocol;
-var port = document.location.port ? (":" + document.location.port) : "";
+var port = document.location.port ? ":" + document.location.port : "";
 var baseUrl = scheme + "//" + document.location.hostname + port;
 
 xhttp.open("GET", baseUrl + "/api/project", true);
@@ -17,7 +17,7 @@ xhttp.onreadystatechange = function (ev) {
     if (xhttp.readyState === 4 && xhttp.status === 200) {
         handleResponse(xhttp.responseText);
     }
-}
+};
 xhttp.send();
 
 function handleResponse(response) {
