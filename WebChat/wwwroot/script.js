@@ -32,12 +32,13 @@ function handleResponse(response) {
         button.className = "button";
         button.value = project;
         button.id = "button_" + project;
-        button.onclick = function () { goToProject(button.value); };
         button.innerHTML = "<span>" + project + "</span>";
+        button.addEventListener("click", function (event) { goToProject(event); });
         container.appendChild(button);
     }
 }
 
-function goToProject(projectName) {
-    window.location = baseUrl + "/" + projectName;
+function goToProject(event) {
+    var path = event.currentTarget.value;
+    window.location = baseUrl + "/" + path;
 }

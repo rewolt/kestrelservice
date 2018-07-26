@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <title>Opóźnienia - test</title>
+</head>
+
+<body>
+
+    <h1>Testy opóźnień</h1>
+    <p>Ustaw opóźnienie:</p>
+
+    <input type="number"
+           id="numberbox"
+           style="width:5em;" />ms
+    <button id="btn"
+            onclick="setDelay()">
+        Ustaw
+    </button>
+
+    <p>Wpisz tekst do pokazania z opóźnieniem:</p>
+    <input type="text" id="textbox" onkeyup="textChanged()" />
+
+    <div id="out">
+        <h1>Tekst do pokazania z opóźnieniem</h1>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
