@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Http;
 using System;
 
 namespace WebChat
@@ -20,6 +21,18 @@ namespace WebChat
             return new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            };
+        }
+
+        public static StaticFileOptions MakeStaticFileOptions(bool isDevelopment)
+        {
+            var cachePeriod = isDevelopment ? "0" : "86400";
+            return new StaticFileOptions
+            {
+                OnPrepareResponse = ctx =>
+                {
+                    ctx.Context.Response.Headers.Append("Cache-Control", $"public, max-age={cachePeriod}");
+                }
             };
         }
     }

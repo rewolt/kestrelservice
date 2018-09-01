@@ -30,10 +30,11 @@ namespace WebChat
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
             app.UseForwardedHeaders(ConfigObjectFactory.MakeForwardedHeadersOptions());
             app.UseWebSockets(ConfigObjectFactory.MakeWebSocketOptions());
-            app.UseFileServer();
+            app.UseDefaultFiles();
+            app.UseStaticFiles(ConfigObjectFactory.MakeStaticFileOptions(env.IsDevelopment()));
             app.UseMvc();
 
             app.Use(async (context, next) =>

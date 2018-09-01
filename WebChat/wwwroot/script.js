@@ -1,4 +1,11 @@
 ﻿
+var footer = document.getElementById("footer");
+var coded_mails = "sfxpmu:1\\bu^hnbjm/dpn!boe!nbsmjo45\\bu^hnbjm/dpn";
+var decoded_mails = "";
+for (i = 0; i < s.length; i++) decoded_mails += String.fromCharCode(s.charCodeAt(i) - 1);
+footer.innerText = "Powered by nginx & kestrel. Authors: " + decoded_mails;
+
+
 var time = document.getElementById("time");
 time.innerHTML = Date();
 
