@@ -7,8 +7,8 @@ var sendButton = document.getElementById("sendButton");
 var sendForm = document.getElementById("sendForm");
 var commsLog = document.getElementById("commsLog");
 var socket;
-var scheme = document.location.protocol == "https:" ? "wss" : "ws";
-var port = document.location.port ? (":" + document.location.port) : "";
+var scheme = document.location.protocol === "https:" ? "wss" : "ws";
+var port = document.location.port ? ":" + document.location.port : "";
 connectionUrl.value = scheme + "://" + document.location.hostname + port + "/webchat/ws";
 
 function updateState() {
@@ -58,24 +58,25 @@ function updateState() {
 }
 
 closeButton.onclick = function () {
-    if (!socket || socket.readyState != WebSocket.OPEN) {
+    if (!socket || socket.readyState !== WebSocket.OPEN) {
         alert("socket not connected");
     }
     socket.close(1000, "Closing from client");
-}
+};
 
 sendButton.onclick = function () {
-    if (!socket || socket.readyState != WebSocket.OPEN) {
+    if (!socket || socket.readyState !== WebSocket.OPEN) {
         alert("socket not connected");
     }
     var data = sendMessage.value;
     socket.send(data);
-    commsLog.innerHTML += '<tr>' +
+    commsLog.innerHTML +=
+    '<tr>' +
         '<td class="commslog-client">Client</td>' +
         '<td class="commslog-server">Server</td>' +
-        '<td class="commslog-data">' + data + '</td>'
+        '<td class="commslog-data">' + data + '</td>' +
     '</tr>';
-}
+};
 
 connectButton.onclick = function () {
     stateLabel.innerHTML = "Connecting";
@@ -96,10 +97,11 @@ connectButton.onclick = function () {
 
     socket.onerror = updateState;
     socket.onmessage = function (event) {
-        commsLog.innerHTML += '<tr>' +
+        commsLog.innerHTML +=
+        '<tr>' +
             '<td class="commslog-server">Server</td>' +
             '<td class="commslog-client">Client</td>' +
-            '<td class="commslog-data">' + event.data + '</td>'
+            '<td class="commslog-data">' + event.data + '</td>' +
         '</tr>';
     };
 };
