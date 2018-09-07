@@ -19,7 +19,7 @@ var scheme = document.location.protocol;
 var port = document.location.port ? ":" + document.location.port : "";
 var baseUrl = scheme + "//" + document.location.hostname + port;
 
-xhttp.open("GET", baseUrl + "/api/project", true);
+xhttp.open("GET", baseUrl + "/api/v1/project", true);
 xhttp.onreadystatechange = function (ev) {
     if (xhttp.readyState === 4 && xhttp.status === 200) {
         handleResponse(xhttp.responseText);

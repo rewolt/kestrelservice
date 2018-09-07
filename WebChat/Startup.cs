@@ -35,8 +35,6 @@ namespace WebChat
             app.UseWebSockets(ConfigObjectFactory.MakeWebSocketOptions());
             app.UseDefaultFiles();
             app.UseStaticFiles(ConfigObjectFactory.MakeStaticFileOptions(env.IsDevelopment()));
-            app.UseMvc();
-
             app.Use(async (context, next) =>
             {
                 if (context.Request.Path == "/webchat/ws")
@@ -48,6 +46,7 @@ namespace WebChat
                     await next();
                 }
             });
+            app.UseMvc();
         }
     }
 }
