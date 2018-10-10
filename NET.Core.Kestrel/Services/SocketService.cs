@@ -6,7 +6,7 @@ using System.Net.WebSockets;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace WebChat.Services
+namespace Kestrel.Services
 {
     public static class SocketService
     {

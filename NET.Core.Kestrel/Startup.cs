@@ -8,10 +8,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using WebChat.Controllers;
-using WebChat.Services;
+using Kestrel.Controllers;
+using Kestrel.Services;
 
-namespace WebChat
+namespace Kestrel
 {
     public class Startup
     {

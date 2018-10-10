@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebChat.Controllers
+namespace Kestrel.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]

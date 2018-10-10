@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Http;
 using System;
 
-namespace WebChat
+namespace Kestrel
 {
     public static class ConfigObjectFactory
     {
